@@ -58,6 +58,19 @@ export class AuthService {
                 .limit(1))[0] ?? null;
 
             if (!checkUserExists) throw new UnauthorizedException()
+
+            const { password: hashedPassword, ...result } = checkUserExists;
+
+            const comparePassword = await bcrypt.compare(password, hashedPassword)
+            if (!comparePassword) throw new ConflictException('password or username invallid')
+
+            const token = this.jwt.sign(result)
+
+            return {
+                message: `welcome back ${result.full_name}`,
+                data: { ...result },
+                token: token
+            }
         } catch (error) {
             console.log(error);
         }

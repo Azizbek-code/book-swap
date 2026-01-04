@@ -21,17 +21,26 @@ export class AuthController {
       })
       return response
     } catch (error) {
-        console.log(error);
-        
+      console.log(error);
+
     }
   }
 
   @Post('login')
-  async login(@Body() data: loginDto) {
+  async login(@Body() data: loginDto, @Res({ passthrough: true }) res: Response) {
     try {
 
-      const response = await this.authService.login(data)
-      return response
+      const response = await this.authService.login(data);
+
+      res.cookie('token', response?.token, {
+        maxAge: 60 * 60 * 1000,
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+      });
+
+      return response;
+
     } catch (error) {
       throw new error
     }
