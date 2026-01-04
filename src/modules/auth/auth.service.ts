@@ -31,6 +31,7 @@ export class AuthService {
                 email: users.email,
                 username: users.username,
                 phoneNumber: users.phone_number,
+                location:users.location,
                 createdAt: users.createdAt
             }))
 
@@ -59,7 +60,7 @@ export class AuthService {
 
             if (!checkUserExists) throw new UnauthorizedException()
 
-            const { password: hashedPassword, ...result } = checkUserExists;
+            const { password: hashedPassword,updatedAt,role, ...result } = checkUserExists;
 
             const comparePassword = await bcrypt.compare(password, hashedPassword)
             if (!comparePassword) throw new ConflictException('password or username invallid')

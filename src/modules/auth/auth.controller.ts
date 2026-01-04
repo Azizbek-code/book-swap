@@ -14,7 +14,7 @@ export class AuthController {
     try {
       const response = await this.authService.register(data)
       res.cookie('token', response?.token, {
-        maxAge: 60 * 60 * 1000,
+        maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
         sameSite: 'strict',
@@ -33,7 +33,7 @@ export class AuthController {
       const response = await this.authService.login(data);
 
       res.cookie('token', response?.token, {
-        maxAge: 60 * 60 * 1000,
+        maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: true,
         sameSite: 'strict',
