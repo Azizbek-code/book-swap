@@ -15,16 +15,13 @@ export const DRIZZLE_DB = Symbol("DRIZZLE_DB");
             useFactory: async (): Promise<DrizzleDB> => {
                 const logger = new Logger("DatabaseModule");
 
-                // Pool yaratish
                 const pool = new Pool({
-                    connectionString: process.env.DATABASE_URL, // must be string
+                    connectionString: process.env.DATABASE_URL, 
                 });
 
-                // Drizzle ORM instance
                 const db = drizzle(pool, { schema });
 
                 try {
-                    // connection test
                     await db.execute(`SELECT 1`);
                     logger.log("Database connected successfully!");
                 } catch (err) {
