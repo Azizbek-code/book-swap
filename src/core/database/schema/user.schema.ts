@@ -6,8 +6,8 @@ import {
     varchar,
     timestamp,
 } from "drizzle-orm/pg-core";
+import { role } from "./role.enum";
 
-export const role = pgEnum('role', ["admin", "company", "user"])
 
 export const users = pgTable("users", {
     id: uuid("id").defaultRandom().primaryKey(),

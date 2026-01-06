@@ -22,6 +22,27 @@
       "when": 1767534230018,
       "tag": "0002_bright_leopardon",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1767600286122,
+      "tag": "0003_tricky_ronan",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1767600778399,
+      "tag": "0004_dark_wallop",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1767601093691,
+      "tag": "0005_cultured_raider",
+      "breakpoints": true
     }
   ]
 }
