@@ -14,10 +14,23 @@ export class BooksController {
   async createBook(@Body() bookData: CreateBookDto, @GetUserId() ownerId: string) {
     try {
       const newBookData = await this.booksService.createBook(bookData, ownerId)
-      
+
       return newBookData
     } catch (error) {
       throw error
     }
-   }
+  }
+
+  @Patch('/update/:id')
+  @UseGuards(JwtGuard)
+  async updateBookData(@Param('id') id: string, @GetUserId() ownerId: string) { }
+
+  @Get('/all')
+  async getAllBokks() { }
+
+  @Get('/one/:id')
+  @UseGuards(JwtGuard)
+  async getOne(@Param('id') id: string, @GetUserId() ownerId: string) {
+
+  }
 }
